@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue.js test</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app-7">
+      <ol>
+        <!--
+          Now we provide each todo-item with the todo object
+          it's representing, so that its content can be dynamic.
+          We also need to provide each component with a "key",
+          which will be explained later.
+        -->
+        <todo-item
+          v-for="item in someList"
+          v-bind:todo="item"
+          v-bind:key="item.id"
+        ></todo-item>
+      </ol>
+    </div>
+
+    <script>
+        Vue.component('todo-item', {
+          props: ['todo'],
+          template: '<li v-bind:[attributeName]="url"><a v-on:click="alert(2)" v-bind:href="todo.url" target="_blank">{{ todo.text }}</a></li>'
+        })
+
+        var app7 = new Vue({
+          el: '#app-7',
+          data: {
+            someList: [
+              { id: 0, url: 'https://google.com', text: 'One', attributeName: 'data-url' },
+              { id: 1, url: 'https://yandex.ua', text: 'Two', attributeName: 'data-url' },
+              { id: 2, url: 'https://yahoo.com', text: 'Three', attributeName: 'data-url' }
+            ]
+          }
+        })
+
+        var variable = '555';
+    </script>
+</body>
+</html>

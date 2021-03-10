@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue.js test</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+
+    <script>
+        const NotFound = { template: '<p>Страница не найдена</p>' }
+        const Home = { template: '<p>главная</p>' }
+        const About = { template: '<p>о нас</p>' }
+
+        const routes = {
+            '/': Home,
+            '/about': About
+        }
+
+        new Vue({
+            el: '#app',
+            data: {
+                currentRoute: window.location.pathname
+            },
+            computed: {
+                ViewComponent () {
+                    return routes[this.currentRoute] || NotFound
+                }
+            },
+            render (h) { return h(this.ViewComponent) }
+        })
+    </script>
+</body>
+</html>
